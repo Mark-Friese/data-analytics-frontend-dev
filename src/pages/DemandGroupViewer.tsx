@@ -4,7 +4,7 @@ import { DemandChart } from '../components/DemandGroup/DemandChart';
 import { SubstationMap } from '../components/DemandGroup/SubstationMap';
 import { SubstationGrid } from '../components/DemandGroup/SubstationGrid';
 import { MetricsGrid } from '../components/DemandGroup/MetricsGrid';
-import { demandGroups, substations } from '../data/mockDemandData';
+import { demandGroups, substations, demandProfileData } from '../data/mockDemandData';
 import { useDemandGroup } from '../hooks/useDemandGroup';
 
 export function DemandGroupViewer() {
@@ -29,7 +29,7 @@ export function DemandGroupViewer() {
             {/* Demand Profile */}
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h2 className="text-lg font-semibold mb-4">Network Demand Profile</h2>
-              <DemandChart data={[]} />
+              <DemandChart data={demandProfileData} />
             </div>
 
             {/* Substations Grid */}

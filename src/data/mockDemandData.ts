@@ -49,3 +49,8 @@ export const keyMetrics: KeyMetric[] = [
     icon: Battery
   }
 ];
+
+export const demandProfileData = Array.from({ length: 24 }, (_, i) => ({
+  timestamp: `2024-03-${String(i + 1).padStart(2, '0')}`,
+  value: 30 + Math.random() * 20 + Math.sin(i / 3) * 10
+}));
