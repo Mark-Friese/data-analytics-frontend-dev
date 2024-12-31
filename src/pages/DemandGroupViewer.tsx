@@ -8,7 +8,7 @@ import { demandGroups, substations, demandProfileData } from '../data/mockDemand
 import { useDemandGroup } from '../hooks/useDemandGroup';
 
 export function DemandGroupViewer() {
-  const [selectedGroupId, setSelectedGroupId] = useState<string | null>(null);
+  const [selectedGroupId, setSelectedGroupId] = useState<string | null>("1");
   const { demandGroup } = useDemandGroup(selectedGroupId);
 
   return (
