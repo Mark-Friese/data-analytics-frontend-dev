@@ -1,23 +1,29 @@
 import { ChevronLeft } from 'lucide-react';
+import { DemandGroup } from '../../types/demandGroup';
+import { SidebarOverlay } from './SidebarOverlay';
+import { DemandGroupSelect } from './DemandGroupSelect';
 
 interface SidebarProps {
   isOpen: boolean;
   onToggle: () => void;
-  children: React.ReactNode;
+  selectedGroupId: string | null;
+  onGroupSelect: (id: string | null) => void;
+  demandGroups: DemandGroup[];
+  children?: React.ReactNode;
 }
 
-export function Sidebar({ isOpen, onToggle, children }: SidebarProps) {
+export function Sidebar({ 
+  isOpen, 
+  onToggle, 
+  selectedGroupId,
+  onGroupSelect,
+  demandGroups,
+  children 
+}: SidebarProps) {
   return (
     <>
-      {/* Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity lg:hidden z-20"
-          onClick={onToggle}
-        />
-      )}
-
-      {/* Sidebar */}
+      <SidebarOverlay isVisible={isOpen} onClick={onToggle} />
+      
       <div
         className={`fixed left-0 top-0 h-full bg-gray-800 text-white transition-all duration-300 ease-in-out z-30
           ${isOpen ? 'w-64 translate-x-0' : 'w-64 -translate-x-full lg:translate-x-0'}`}
@@ -33,6 +39,11 @@ export function Sidebar({ isOpen, onToggle, children }: SidebarProps) {
           </button>
         </div>
         <div className="p-4">
+          <DemandGroupSelect
+            selectedGroupId={selectedGroupId}
+            onGroupSelect={onGroupSelect}
+            demandGroups={demandGroups}
+          />
           {children}
         </div>
       </div>

@@ -1,62 +1,41 @@
-import React, { useState } from 'react';
-import { MapPin } from 'lucide-react';
-import { MetricCard } from '../components/TimeSeriesInsights/Charts/MetricCard';
-import { Sidebar } from '../components/DemandGroup/Sidebar';
-import { SubstationMap } from '../components/DemandGroup/SubstationMap';
+import { useState } from 'react';
+import { Sidebar } from '../components/Layout/Sidebar';
 import { DemandChart } from '../components/DemandGroup/DemandChart';
-import { demandGroups, substations, keyMetrics } from '../data/mockDemandData';
-
-// Sample time series data
-const timeSeriesData = Array.from({ length: 24 }, (_, i) => ({
-  timestamp: `${i}:00`,
-  value: 25 + Math.random() * 20
-}));
+import { SubstationMap } from '../components/DemandGroup/SubstationMap';
+import { SubstationGrid } from '../components/DemandGroup/SubstationGrid';
+import { MetricsGrid } from '../components/DemandGroup/MetricsGrid';
+import { demandGroups, substations } from '../data/mockDemandData';
+import { useDemandGroup } from '../hooks/useDemandGroup';
 
 export function DemandGroupViewer() {
   const [selectedGroupId, setSelectedGroupId] = useState<string | null>(null);
+  const { demandGroup } = useDemandGroup(selectedGroupId);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Sidebar
+        isOpen={true}
+        onToggle={() => {}}
         selectedGroupId={selectedGroupId}
         onGroupSelect={setSelectedGroupId}
         demandGroups={demandGroups}
       />
 
       <div className="ml-64 p-6">
-        {/* Key Metrics */}
-        <div className="grid grid-cols-4 gap-6 mb-8">
-          {keyMetrics.map((metric, index) => (
-            <MetricCard key={index} {...metric} />
-          ))}
-        </div>
+        <MetricsGrid />
 
         {selectedGroupId ? (
           <div className="space-y-6">
             {/* Demand Profile */}
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h2 className="text-lg font-semibold mb-4">Network Demand Profile</h2>
-              <DemandChart data={timeSeriesData} />
+              <DemandChart data={[]} />
             </div>
 
             {/* Substations Grid */}
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h2 className="text-lg font-semibold mb-4">Substations</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {substations.map(substation => (
-                  <div key={substation.id} className="border rounded-lg p-4">
-                    <div className="flex items-center space-x-4">
-                      <MapPin className="h-6 w-6 text-blue-500" />
-                      <div>
-                        <h3 className="font-medium">{substation.name}</h3>
-                        <p className="text-sm text-gray-500">
-                          Capacity: {substation.capacity_mw} MW
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <SubstationGrid substations={substations} />
             </div>
 
             {/* Map View */}

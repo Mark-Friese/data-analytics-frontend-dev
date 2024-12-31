@@ -1,3 +1,5 @@
+import { LucideIcon } from 'lucide-react';
+
 export interface DemandGroup {
   id: string;
   name: string;
@@ -16,5 +18,5 @@ export interface KeyMetric {
   title: string;
   value: string;
   description: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: LucideIcon;
 }

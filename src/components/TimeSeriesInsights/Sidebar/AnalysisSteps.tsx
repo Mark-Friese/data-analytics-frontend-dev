@@ -52,7 +52,7 @@ export function AnalysisSteps({
             onChange={(e) => onMetricChange(e.target.value)}
             className="bg-gray-700 text-sm px-4 py-2 rounded w-full appearance-none"
           >
-            <option value="collisions">collisions</option>
+            <option value="active power">active power</option>
           </select>
           <ChevronDown className="absolute right-3 top-2.5 h-4 w-4 text-gray-400" />
         </div>

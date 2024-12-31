@@ -1,4 +1,4 @@
-import { Activity, Zap, Battery } from 'lucide-react';
+import { Activity, Zap, Battery, Gauge } from 'lucide-react';
 import { DemandGroup, Substation, KeyMetric } from '../types/demandGroup';
 
 export const demandGroups: DemandGroup[] = [
@@ -28,7 +28,7 @@ export const keyMetrics: KeyMetric[] = [
     title: 'FIRM CAPACITY',
     value: '50.0 MVA',
     description: 'Total available network capacity',
-    icon: Activity
+    icon: Gauge
   },
   {
     title: 'PEAK DEMAND',
@@ -40,7 +40,7 @@ export const keyMetrics: KeyMetric[] = [
     title: 'LOAD INDEX',
     value: 'LI 4',
     description: 'Load Index for the demand group',
-    icon: Battery
+    icon: Activity
   },
   {
     title: 'UTILIZATION',
